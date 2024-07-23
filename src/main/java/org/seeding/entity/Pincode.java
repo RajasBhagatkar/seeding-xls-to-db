@@ -1,58 +1,84 @@
 package org.seeding.entity;
 
 
-import lombok.Builder;
+//import lombok.Builder;
 
 import java.util.Date;
+import java.util.Random;
+import java.util.UUID;
 
-@Builder
+//@Builder
 public class Pincode {
 
 //    public Pincode() {
-//        this.Id = new Date().getTime();
-//        this.circleName = "";
-//        this.regionName ="";
-//        this.divisionName ="";
-//        this.pincode = null;
-//        this.district ="";
-//        this.state ="";
-//        this.latitude = 0D;
-//        this.longitude = 0D;
+//        this.Id = (long) (new Date().getTime() / 10000 * Math.random() + 1000);
+//        this.created_date = new java.sql.Date(new java.sql.Date(System.currentTimeMillis()).getTime());
+//        this.updated_date = new java.sql.Date(new java.sql.Date(System.currentTimeMillis()).getTime());
 //    }
-    private Long Id = new Date().getTime();
 
+    //    private Long Id = (long) (new Date().getTime() / 10000 * Math.random() + 1000);
+    private String Id = UUID.randomUUID().toString();
     private String circleName;
     private String regionName;
     private String divisionName;
-    // office name is the locality
     private Integer pincode;
-
     private String district;
     private String state;
-
     private Double latitude;
     private Double longitude;
+    private String locality;
+    private java.sql.Date created_date = new java.sql.Date(new java.sql.Date(System.currentTimeMillis()).getTime());
+    private java.sql.Date updated_date = new java.sql.Date(new java.sql.Date(System.currentTimeMillis()).getTime());
+
+    public String getLocality() {
+        return locality;
+    }
+
+    public void setLocality(String locality) {
+        this.locality = locality;
+    }
 
 
-    public Long getId() {
+    public void setCreated_date(java.sql.Date created_date) {
+        this.created_date = created_date;
+    }
+
+    public void setUpdated_date(java.sql.Date updated_date) {
+        this.updated_date = updated_date;
+    }
+
+    public java.sql.Date getUpdated_date() {
+        return updated_date;
+    }
+
+    public java.sql.Date getCreated_date() {
+        return created_date;
+    }
+
+
+    // office name is the locality
+
+
+    public String getId() {
         return Id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         Id = id;
     }
-    public void setId() {
-        Id = new Date().getTime();
-    }
+
     public String getCircleName() {
         return circleName;
     }
+
     public void setCircleName(String circleName) {
         this.circleName = circleName;
     }
+
     public String getRegionName() {
         return regionName;
     }
+
     public void setRegionName(String regionName) {
         this.regionName = regionName;
     }
@@ -117,6 +143,9 @@ public class Pincode {
                 ", state='" + state + '\'' +
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +
+                ", locality='" + locality + '\'' +
+                ", created_date=" + created_date +
+                ", updated_date=" + updated_date +
                 '}';
     }
 }
